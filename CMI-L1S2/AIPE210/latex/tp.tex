@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc} % ajouté
+\usepackage[french]{babel}
+\usepackage{fourier, erewhon}
+\usepackage[T1]{fontenc}
+%% permet de spécifier la langue 
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{indentfirst}
+\usepackage{verbatim}
+\usepackage{enumerate}
+%% pour inclure des figures
+%%\usepackage{graphicx}
+%% Pour les maths
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{color}
+% \theoremstyle{plain}
+% \newtheorem{thm}{Théorème}
+% \newtheorem{prop}{Proposition}
+% \newtheorem{exo}{Exercice}
+% \theoremstyle{remark}
+% \newtheorem{rem}{Remarque}
+
+\newcommand{\grasitalique}[1]{\textit{\textbf{\color{blue} #1}}}
+\newcommand{\diagonale}[3]{
+\[
+\begin{pmatrix}
+	#1 & 0 & 0\\
+	0 & #2 & 0\\
+	0 & 0 & #3
+\end{pmatrix}
+\]
+}
+
+\parindent 12pt
+
+\pagestyle{plain}
+
+
+\title{TP {\LaTeX}}
+\date{\today}
+\author{Simon \bsc{Léonard}}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Mises en formes}
+	\begin{enumerate}
+		\item[2.] \textbf{BOLD} and \textit{italic} and \textsc{something}
+	\end{enumerate}
+
+\section{Répondre aux challenges suivants}
+	\begin{enumerate}
+		\item On dérive la fonction \(f(x)=x^3\) et on trouve \(f'(x)=3x^2\)
+
+		\item
+		\[\sqrt{\alpha + 1} = \frac{1}{3}\]
+
+		\item
+		\[\Delta = a_{12} x^{12} + a_1 x + a_0\]
+
+		\item
+		\begin{equation} \label{eq1}
+			f(x)= \cos{\left(\frac{\pi x}{2}\right)}
+		\end{equation}
+
+		\item
+		\begin{equation}
+			\int_0^1 -\frac{1-x}{1+x}dx
+		\end{equation}
+
+		\item
+		C'est magnifique, merci.
+
+		\item
+		\[
+		M=
+		\begin{pmatrix}
+		2 & 0 & 1\\
+		0 & 1 & 2\\
+		3 & 1 & 4 
+		\end{pmatrix}
+		\]
+
+		\item
+		\[\vec{u}_x=
+		\begin{pmatrix}
+			x\\	
+			y\\
+			z
+		\end{pmatrix}
+		\]
+
+		\item
+		Comme on le voit dans l'équation \ref{eq1}, blabla
+	\end{enumerate}
+
+\section{Commande personnalisée}
+	Un mot en \grasitalique{gras et en italique coloré}.
+	\begin{enumerate}
+		\item \diagonale{1}{2}{8}
+	\end{enumerate}
+
+\end{document}
