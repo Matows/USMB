@@ -297,7 +297,7 @@ def dansRectangle(x,y, cx,cy, L, H):
 
     Retourne ``Vrai`` si le point est dans le rectangle, ``Faux`` sinon.
     """
-    return cx <= x <= cx+L and cy <= y <= cy+H
+    return cx <= x < cx+L and cy <= y < cy+H # '<' car l'index commence à 0
 
 
 def repeindreSi(im, l, pred):
@@ -344,18 +344,17 @@ def faireNBandes(im, n):
 
     Note: pour chaque bande, vous devez définir un nouveau prédicat.
     """
-    coef = (im.width-1)//n # Chaque point d'origine de rectangle/bande est un muptiple de coef
-    points = [k*coef for k in range(n)] # abscisses des points de début de bande
-    bande_width = points[1] - points[0] - 1
+    bande_width = (im.width+1)//n # Chaque point d'origine de rectangle/bande est un muptiple de bande_width
+    points = [k*bande_width for k in range(n)] # abscisses des points de début de bande
 
     for i, point in enumerate(points):
-        # Prend en charge la dernière bande
-        bande_width = im.height if point == points[-1] else bande_width 
-
         # On défini les paramètres immuable pour la bande en cours
-        pred = lambda l,h: dansRectangle(l,h, point,0, bande_width,im.height) 
+        #
+        # Renverra True si le point (x,y) se trouve dans le rectangle 
+        # commençant au point (point,0) et se terminant au point (point+bande_width-1,im.height-1)
+        pred = lambda x,y: dansRectangle(x,y, point,0, bande_width,im.height) 
 
-        repeindreSi(im,genKgris(i+2),pred)
+        im = repeindreSi(im,genKgris(i+2),pred)
     return im
 
 
@@ -570,5 +569,5 @@ if __name__ == '__main__':
     # testTP1(6)
     # testTP1(7)
     # testTP1(8)
-    # testTP1(9)
+    testTP1(9)
 
