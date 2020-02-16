@@ -3,6 +3,7 @@
 
 import random
 from tkinter import *
+from tkinter import messagebox
 
 __author__ = "Simon LÉONARD"
 __email__  = "simon.leonard@etu.univ-smb.fr"
@@ -118,12 +119,33 @@ def composante_connexe(plateau, i, j):
             for x,y in cases_voisines(plateau, i, j):
                 composante_connexe(plateau,x,y)
 
-def clic_droit():
-    ...
+def clic_droit(clic):
+    j = clic.x // (largeur_case+1)  # x et y contiennent les
+    i = clic.y // (hauteur_case+1)  # coordonnées de la case
+    if not dans_plateau(plateau_courant, i, j) or perdu(plateau_courant) or gagne(plateau_courant):
+        return
+    case = plateau_courant[i][j]
+    if case['etat'] in (INCONNU,DRAPEAU,QUESTION):
+        if case['etat'] == INCONNU:
+            r = DRAPEAU
+        elif case['etat'] == DRAPEAU:
+            r = QUESTION
+        else:
+            r = INCONNU
+        case['etat'] = r
+    dessine_plateau(plateau_courant)
+
+    # NOTE : On ne peut perdre qu'avec un clic gauche et gagné qu'avec un clic droit
+    if gagne(plateau_courant):
+        messagebox.showinfo("Winner", "Vous avez gagné !")
 
 ### QUESTION : écrire la fonction suivante
 def perdu(plateau):
     """renvoie True lorsque que le plateau contient une case découverte avec une mine"""
+    for ligne in plateau_courant:
+        for case in ligne:
+            if case['etat'] == PERDU:
+                return True
     return False
 
 
@@ -131,7 +153,12 @@ def perdu(plateau):
 def gagne(plateau):
     """renvoie True lorsque que le plateau contient les drapeaux exactement
     sur les cases minées"""
-    return False
+    g = True
+    for ligne in plateau_courant:
+        for case in ligne:
+            if case['mine'] and case['etat'] != DRAPEAU or case['etat'] == DRAPEAU and not case['mine']:
+                g = False
+    return g
 
 
 ###############################
@@ -196,7 +223,10 @@ def dessine_case(plateau, i, j, solution=False):
         grille.create_image(x1, y1, image=question_img, anchor=NW)
     elif etat == INCONNU:
         if plateau[i][j]["mine"] and solution:
-            grille.create_image(x1, y1, image=mine_img, anchor=NW)
+            if plateau[i][j]['etat'] == DRAPEAU:
+                grille.create_image(x1,y1, image=mauvais_drapeau_img, anchor=NW)
+            else:
+                grille.create_image(x1, y1, image=mine_img, anchor=NW)
         else:
             grille.create_image(x1, y1, image=inconnu_img, anchor=NW)
     elif etat == PERDU:
@@ -227,12 +257,18 @@ def __action_clic(clic):
     # du clic à l'intérieur de la fenêtre
     j = clic.x // (largeur_case+1)  # x et y contiennent les
     i = clic.y // (hauteur_case+1)  # coordonnées de la case
-    if not dans_plateau(plateau_courant, i, j):
+    if not dans_plateau(plateau_courant, i, j) or perdu(plateau_courant) or gagne(plateau_courant):
         return
     if plateau_courant[i][j]["etat"] != INCONNU:
         return
+
     ok = decouvre_case(plateau_courant, i, j)
     dessine_plateau(plateau_courant)
+
+    if not ok:
+        messagebox.showinfo("Looser", "Vous avez perdu")
+    # NOTE : On ne peut perdre qu'avec un clic gauche et gagné qu'avec un clic droit
+
 
 
 def __action_m(e):
@@ -260,7 +296,6 @@ def __action_q(e):
 largeur = 15                # largeur du plateau, en nombre de cases
 hauteur = 20               # hauteur du plateau, en nombre de cases
 probabilite_mine = 0.15     # probabilité qu'une case contienne une mine
-
 
 # fenêtre principale
 root = Tk()
