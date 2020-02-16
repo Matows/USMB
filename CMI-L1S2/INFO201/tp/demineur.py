@@ -218,15 +218,15 @@ def dessine_case(plateau, i, j, solution=False):
         y1 = y1 + hauteur_case//2
         grille.create_text(x1, y1, justify=CENTER, text=str(etat))
     elif etat == DRAPEAU:
-        grille.create_image(x1, y1, image=drapeau_img, anchor=NW)
+        if not plateau[i][j]['mine'] and solution:
+            grille.create_image(x1,y1, image=mauvais_drapeau_img, anchor=NW)
+        else:
+            grille.create_image(x1, y1, image=drapeau_img, anchor=NW)
     elif etat == QUESTION:
         grille.create_image(x1, y1, image=question_img, anchor=NW)
     elif etat == INCONNU:
         if plateau[i][j]["mine"] and solution:
-            if plateau[i][j]['etat'] == DRAPEAU:
-                grille.create_image(x1,y1, image=mauvais_drapeau_img, anchor=NW)
-            else:
-                grille.create_image(x1, y1, image=mine_img, anchor=NW)
+            grille.create_image(x1, y1, image=mine_img, anchor=NW)
         else:
             grille.create_image(x1, y1, image=inconnu_img, anchor=NW)
     elif etat == PERDU:
