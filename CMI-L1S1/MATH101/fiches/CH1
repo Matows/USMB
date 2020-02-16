@@ -1,0 +1,83 @@
+# Éléments du language mathématique
+
+## opérations logiques
+
+---
+
+### Assertion/proposition
+
+Énoncé suseptible d'être vrai ou faux sans ambiguîté.
+
+---
+
+### Négation
+
+Assertion faux quand A est vrai.
+
+- exemple : B: \(sqrt(2)\) est rationel -> assertion fausse. Donc NON B est vrai.
+
+---
+
+### Conjonction : A ET B
+
+---
+
+### Disjonction : A OU B
+
+---
+
+### Implication 
+
+\(A => B\) (implique) = (NON A) ou B
+
+- Table de vérité : 
+	|A|B|NON A|| \(A => B\)|
+	-------------------------
+	|V|V|F||V|
+	|V|F|F||F|
+	|F|V|V||V|
+	|F|F|V||V|
+- Vocabulaire : 
+	- **B** est une condition **nécéssaire** pour **A**.
+	- **A** est une condition **suffisante** pour **B**.
+- Exemple : si \(a in RR\) alors l'assertion \(a <= -1 => a^2 >= 1\) est vrai
+	
+---
+
+### Équivalence
+
+\(A <==> B\) <-> \( {(A=>B),(B=>A):} \)
+
+- Table de vérité :
+	|A|B||\(A<=>B\)|
+	----------------
+	|V|V||V|
+	|V|F||F|
+	|F|V||F|
+	|F|F||V|
+- exemple : l'assertion \(a>=1\) ou \(a<=-1<=>a^2>=1\) est vrai.
+
+---
+
+### Quelques règles
+
+- NON(NON(A)) \(<=>\) A
+- NON(A ET B) \(<=>\) NON(A) OU NON(B)
+- NON(A OU B) \(<=>\) NON(A) ET NON(B)
+- NON(A \(=>\) B) \(<=>\) NON(NON(A) OU B) \(<=>\) NON(NON(A)) ET NON(B) \(<=>\) A ET NON(B)
+
+---
+
+### Contraposée
+
+NON(B) \(=>\) NON(A) s'appelle la contraposéé de A \(=>\) B \[(A => B) <=> (NON(B) => NON(A)\]
+
+- Exemple : si je lance un balle elle tombe. Si elle tombe pas, c'est qu'elle n'a pas été lancé.
+
+---
+
+### Réciproque
+
+La réciproque de A \(<=>\) B est B \(<=>\) A
+
+---

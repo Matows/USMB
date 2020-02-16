@@ -91,4 +91,78 @@ def prix(nbjours, taille, tab=prix_loc):
 ```
 
 ## Dictionnaires
+// you know how it works
 
+
+## Fonctions : rappels
+
+Une fonction est composé de :
+- Paramètres
+- Entrées
+- Sortie (ou pas!)
+- Du code (suite d'insctruction)
+- Docstring
+
+La première ligne (la ligne de déclaration de la fonction) s'appelle le **prototype** ou **signature** de la fonction.
+
+Syntax : 
+```py
+def nomFonction(paramètres): #Prototype
+    ...
+```
+
+### Utilité
+
+- Évite les répétition et la duplication
+- Structurer le code
+- Gagner en clareté
+- Tester le code en plusieurs parties
+
+### Variables locales
+Varaibles définie à l'intérieur d'une fonction et qui ne peut être utilisé que dans cette fonction
+
+### Importer des fonctions
+
+`from random import randint`
+- À faire en début de fichier
+- On peut importer une unique fonction ou toutes les fonctions du fichier (\*)
+    * `from Image import *`
+
+## Parapètres (de fonction)
+
+### Définition et exemple
+
+- Variables particulières qui permettent de recevoir des données, elles sont déjà initialisées au début de la fonction
+- Une fonction peut ne pas avoir de paramètres
+
+### Paramètres par défaut
+
+Les paramètres par défaut doivent être après les paramètres obligatoires.
+
+### Peut-on modifier les paramètres ?
+Dépend si les paramètres sont passé par valeur ou par référence.
+
+## Sorties/Valeurs de retour
+
+- Fonctions sans valeur de retour : les procédures
+- Avec valeur de retour
+
+## Décomposition en sous-fonctions
+
+Diviseurs stricts de 6 : 1, 2, 3
+
+- écrire un programme qui affiche les 5 premiers entiers parfaits
+```py
+def isPerfect(n):
+    diviseurs = [nb for nb in range(1,n) if (n / nb).is_integer()]
+    return sum(diviseurs) == n
+
+def display5FirstPerfect():
+    n = 1
+    cpt = 0
+    while cpt = 0 < 5:
+        if isPerfect(n):
+            print(n)
+            cpt += 1
+        n += 1
+```
