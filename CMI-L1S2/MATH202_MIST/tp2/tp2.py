@@ -98,7 +98,9 @@ def lz78_compresse_bin(texte):
     texte: chaine de caractères
     résultat: liste d'octets.
     """
-    return octets(lz78_compresse(texte))
+    encoded = lz78_compresse(texte)
+    encoded = avoidSup256(encoded)
+    return octets(encoded)
 
 def ascii(T):
     """transforme une liste d'octet en caractère ASCII"""
@@ -129,3 +131,14 @@ def test_lz78_bin(texte):
         print("OK")
     else:
         print("PROBLÈME : le résultat décompressé est différent de la chaine de départ !")
+
+def avoidSup256(T):
+    """Contourne le problème des entiers supérieur à 255 en écrivant les nombres sur 2 octets
+        
+        T: tableau alterné d'entier et de string
+        résultat: tableau alterné d'entier sur deux octets et de string
+    """
+    if len(T) >= 256:
+        for i in range(0,len(T[256:]),2):
+            T[256:].insert(i, T[256:][i] // 256)
+            T[256:][i] = T[256:][i] % 256
