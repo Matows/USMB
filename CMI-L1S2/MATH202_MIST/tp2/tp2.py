@@ -138,7 +138,10 @@ def avoidSup256(T):
         T: tableau alterné d'entier et de string
         résultat: tableau alterné d'entier sur deux octets et de string
     """
-    if len(T) >= 256:
-        for i in range(0,len(T[256:]),2):
-            T[256:].insert(i, T[256:][i] // 256)
-            T[256:][i] = T[256:][i] % 256
+    
+    shift = -1 if isinstance(T[-1], int) else 0 # avoir seulement les entiers
+    for i in range(len(T)-2+shift,0,-2):
+        if i > 255:
+            T.insert(i, T[i] // 256)
+            T[i] = T[i] % 256
+    return T
