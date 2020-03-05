@@ -99,7 +99,9 @@ def lz78_compresse_bin(texte):
     résultat: liste d'octets.
     """
     encoded = lz78_compresse(texte)
-    encoded = avoidSup256(encoded)
+    print("compressed")
+    encoded = avoidSup256_v2(encoded)
+    print("converted")
     return octets(encoded)
 
 def ascii(T):
@@ -133,15 +135,33 @@ def test_lz78_bin(texte):
         print("PROBLÈME : le résultat décompressé est différent de la chaine de départ !")
 
 def avoidSup256(T):
-    """Contourne le problème des entiers supérieur à 255 en écrivant les nombres sur 2 octets
+    """Contourne le problème des entiers supérieur à 255 en écrivant les nombres >=256 sur 2 octets
         
         T: tableau alterné d'entier et de string
         résultat: tableau alterné d'entier sur deux octets et de string
     """
-    
-    shift = -1 if isinstance(T[-1], int) else 0 # avoir seulement les entiers
+    if len(T) < 514: # Valeur trouvé par tatonement
+        return T
+
+    shift = -1 if isinstance(T[-1], int) else 1 # avoir seulement les entiers
+
     for i in range(len(T)-2+shift,0,-2):
-        if i > 255:
-            T.insert(i, T[i] // 256)
-            T[i] = T[i] % 256
+        T.insert(i, T[i] // 256)
+        T[i] = T[i] % 256
+    return T
+
+def avoidSup256_v2(T):
+    """Fonction qui contourne le problème des entiers supérieur à 255 en écrivant les nombres >=256 sur 2 octets
+        
+        T: tableau alterné d'entier et de string
+        résultat: tableau alterné d'entier sur deux octets et de string
+
+        fonctionnement : pour tout les entiers >=256, on les remplaces par deux entiers
+    """
+    for i,elem in enumerate(T):
+        if isinstance(elem,int):
+            if elem > 255:
+                T.insert(i,T[i] // 256)
+                T[i] = T[i] % 256
+
     return T
