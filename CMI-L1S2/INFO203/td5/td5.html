@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+ <meta charset="utf-8" />
+ <link rel="stylesheet" href="ecranTd5.css" media="screen" />
+ <script src="exosTd.js"> </script>
+ <title>Exercises CSS et JavaScript</title>
+ </head>
+ <body>
+	<header>
+		<h1>Exercises <em>CSS</em> et <em>JavaScript</em></h1>
+	</header>
+	<p>Navigation </p>
+<div class="flex-container">
+	<nav>
+	<ul>
+		<li><a href="http://www.univ-savoie.fr" > http://www.univ-savoie.fr </a> </li>
+		<li><a href="http://www.siteduzero.com." > http://www.siteduzero.com.</a> </li>
+    <li class="categorie">Exercices
+      <ul>
+        <li>JavaScript</li>
+        <li>PHP</li>
+      </ul>
+    </li>
+	</ul>
+	</nav>
+	<section>
+		<h3>Partie principame</h3>
+    <p>Le but des feuilles de style CSS, c'est de séparer le contenu de la forme. </p>
+
+		<h3> Exercises JavaScript </h3>
+		<button onclick="cliqueUn()"> cliquez ici (un)</button> <br />
+		<button onclick="cliqueDeux()"> cliquez ici (deux)</button> <br />
+		<h4> Conversion euros vers dollars </h4>
+		<p>Montant en euros :<input type="text" name="valeur" id="valeur"  />
+		<input type="button" value="conversion" onclick="eurosVersDollards(valeur.value)" />
+		</p>
+
+		<p> Nouvelle version du formulaire conversion euros vers dollars <br />
+		Montant en euros: <input type="text" name="veuros" id="euros" /> <br />
+		Montant en dollars : <input type="text" name="vdollars" id="dollars" /> <br />
+		<input type="button" value="conversion" onclick="eurosVersDollards2(euros.value);" />
+		</p>
+
+    Prénom : <input type="text" name="nom" id="nom"/> <br />
+    Proposition : <input type="number" name="proposition" id="proposition" /><br />
+    <input type="button" value="Faire proposition" onclick="proposition(nom.value,proposition.value);" />
+
+    <h4>Merci M/Mme <span id="displayName"></span>, votre proposition est de <span id="displayValue"></span>€</h4>
+
+    <p style="background-color: yellow" onmouseover="style.backgroundColor='red'" onmouseout="style.backgroundColor='yellow'">Modifier le style CSS d'un élémet HTML via JavaScript.<br/>Survolez ce paragraphe avec la sourie</p>
+	</section>
+</div>
+	<footer>
+	<p>
+	Copyrigh © : Info 222 <br />
+	<img src="https://mmi.univ-smb.fr/~mtoma/info203/TDs/exo3_css/html5Valid.png" alt="Logo de validation " />
+	</p>
+	</footer>
+ </body>
+</html>

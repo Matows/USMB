@@ -38,7 +38,7 @@ def lz78_compresse(texte):
             resultat.append(c)
             dico.append(mot_courant + c)
             mot_courant = ""
-    # gestion dernier mot_courant 
+    # gestion dernier mot_courant
     pos = position(dico, mot_courant)
     if pos != 0:
         resultat.append(pos)
@@ -99,7 +99,7 @@ def lz78_compresse_bin(texte):
     résultat: liste d'octets.
     """
     encoded = lz78_compresse(texte)
-    encoded = avoidSup256(encoded)
+    encoded = avoidSup256_v2(encoded)
     return octets(encoded)
 
 def ascii(T):
@@ -132,16 +132,18 @@ def test_lz78_bin(texte):
     else:
         print("PROBLÈME : le résultat décompressé est différent de la chaine de départ !")
 
-def avoidSup256(T):
-    """Contourne le problème des entiers supérieur à 255 en écrivant les nombres sur 2 octets
-        
+def avoidSup256_v2(T):
+    """NE FONCTIONNE PAS (et on comprend vraiment pas pourquoi...)
+        Contourne le problème des entiers supérieur à 255 en les écrivant sur 2 octets
+
         T: tableau alterné d'entier et de string
         résultat: tableau alterné d'entier sur deux octets et de string
     """
-    
-    shift = -1 if isinstance(T[-1], int) else 0 # avoir seulement les entiers
-    for i in range(len(T)-2+shift,0,-2):
-        if i > 255:
-            T.insert(i, T[i] // 256)
-            T[i] = T[i] % 256
+    print(len(T))
+    for index in range(len(T)):
+        if isinstance(T[index], int):
+            if T[index] >=256:
+                T.insert(index, T[index] // 256)
+                T[index] = T[index] % 256
     return T
+
