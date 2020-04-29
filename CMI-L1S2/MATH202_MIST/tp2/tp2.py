@@ -132,18 +132,35 @@ def test_lz78_bin(texte):
     else:
         print("PROBLÈME : le résultat décompressé est différent de la chaine de départ !")
 
-def avoidSup256_v2(T):
-    """NE FONCTIONNE PAS (et on comprend vraiment pas pourquoi...)
-        Contourne le problème des entiers supérieur à 255 en les écrivant sur 2 octets
-
+def avoidSup256(T):
+    """Contourne le problème des entiers supérieur à 255 en écrivant les nombres >=256 sur 2 octets
+        
         T: tableau alterné d'entier et de string
         résultat: tableau alterné d'entier sur deux octets et de string
     """
-    print(len(T))
-    for index in range(len(T)):
-        if isinstance(T[index], int):
-            if T[index] >=256:
-                T.insert(index, T[index] // 256)
-                T[index] = T[index] % 256
+    if len(T) < 514: # Valeur trouvé par tatonement
+        return T
+
+    shift = -1 if isinstance(T[-1], int) else 1 # avoir seulement les entiers
+
+    for i in range(len(T)-2+shift,0,-2):
+        T.insert(i, T[i] // 256)
+        T[i] = T[i] % 256
+    return T
+
+def avoidSup256_v2(T):
+    """Fonction qui contourne le problème des entiers supérieur à 255 en écrivant les nombres >=256 sur 2 octets
+        
+        T: tableau alterné d'entier et de string
+        résultat: tableau alterné d'entier sur deux octets et de string
+
+        fonctionnement : pour tout les entiers >=256, on les remplaces par deux entiers
+    """
+    for i,elem in enumerate(T):
+        if isinstance(elem,int):
+            if elem > 255:
+                T.insert(i,T[i] // 256)
+                T[i] = T[i] % 256
+
     return T
 
