@@ -1,0 +1,7 @@
+Question 1
+
+1) La programmation shell est plus "clair" car on utilise les commandes systèmes (au lieu des fonctions d'un language de programmation comme python)
+En revanche, les conditions sont très flou et peu intuitive, comme l'option `-z` qui reviendrait en python à écrire `variable is None`, beaucoup plus explicite.
+La réalisation en python aurait été légèrement plus diffice, la syntax (pour avoir les paramètres passer en ligne de commande par exemple) serait plus verbeuse. Les scripts bash sont conçu pour une utilisation en ligne de commande
+
+2) On peut imagine un script simple pour éditer nos fichiers de config peut importe $PWD. J'ai fait un brouillon dans config_edit.

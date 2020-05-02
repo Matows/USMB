@@ -1,0 +1,12 @@
+author: Simon LÉONARD
+
+note: le fichier `conf` doit être dans le $PATH. C'est un script que j'ai écris à la suite de ce TP afin de pouvoir modifier mes fichiers de config peu import $PWD.
+
+use:
+ce script prend en paramètre des valeurs préalablement défini en l'éditant. Une fois fait, `conf valeur` editera le fichier de configuration correspondant à "valeur".
+
+e.g.: chez moi, EDITOR=nvim
+    - `conf zsh` -> $EDITOR $HOME/.zshrc
+    - `conf nvim` -> $EDITOR $XDG_CONFIG_HOME/nvim/init.vim
+
+

@@ -1,0 +1,10 @@
+author: Simon LÉONARD
+
+note: stats.sh affiche les résultats à la fin du programme alors que statsv2.sh affiche au fur et à mesure. Vous devez `source` le fichier stats.sh (ou statsv2.sh) pour utiliser la commande `stats`
+
+use: `stats --help`
+ce script affiche plus ou moins d'information sur le répertoir courant, en fonction du nombre passé en paramètre. Le nombre en question vas de 1 à 3, le plus haut donnant le plus d'information.
+
+e.g.: stats, stats 2, stats 3
+
+

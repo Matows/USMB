@@ -1,0 +1,7 @@
+author: Simon LÉONARD
+
+note: favoris.sh contient des fonctions qu'il faut `source` pour les utiliser.
+
+use: `fav --help`
+Ce script permet de gérer des raccourcis vers des répertoires.
+

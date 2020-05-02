@@ -1,0 +1,7 @@
+author: Simon LÉONARD
+
+note: todo.sh est un système simple de gestion de liste de chose à faire. Vous devez `source` le fichier todo.sh pour utiliser la commande `todo`
+
+
+use: `todo --help`
+

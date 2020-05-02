@@ -1,0 +1,24 @@
+#!/bin/bash
+
+file=""
+
+case $1 in
+    vim|vi|nvim)
+        file=$XDG_CONFIG_HOME/nvim/init.vim;;
+
+    aw|awm|awesome|awesomewm)
+        if [ -z $2 ]
+        then
+            file=$XDG_CONFIG_HOME/awesome/rc.lua
+        else
+            file=$XDG_CONFIG_HOME/awesome/$2
+        fi;;
+
+    ala|alacritty)
+        file=$XDG_CONFIG_HOME/alacritty/alacritty.yml;;
+
+    zsh)
+        file=$HOME/.zshrc;;
+esac
+
+$EDITOR $file
