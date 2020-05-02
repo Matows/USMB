@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rapport-tp4-Simon_LEONARD</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    body { font-family: sans-serif; }
+  </style>
+  <link rel="stylesheet" href="sakura-earthly.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Simon LÉONARD CMI-INFO</p>
+<h1 id="tp4-info202">TP4 INFO202</h1>
+<h2 id="question-1">QUESTION 1</h2>
+<ol type="1">
+<li>/home/simon</li>
+<li>/home/simon/files/rapport-tp4-Simon_LEONARD.txt</li>
+</ol>
+<h2 id="question-2">QUESTION 2</h2>
+<ol type="1">
+<li><code>find -name ".py"</code></li>
+<li><code>find /usb/bin/ -name "*.[13579]"</code></li>
+<li><code>find</code> renvoie un fichier par ligne. Je peux donc “piper” la sortie de <code>find</code> à <code>wc -l</code> pour compter le nombre de lignes.</li>
+</ol>
+<h2 id="question-3">QUESTION 3</h2>
+<ol start="2" type="1">
+<li>Les fichiers ont l’air identiques.</li>
+<li><code>petit_fichier1.ascii</code> contient un charactère de plus : <code>0a</code>, Line Feed <em>aka</em> saut de ligne. On peut aussi le voir avec la commande <code>diff petit_fichier1.ascii petit_fichier2.ascii</code></li>
+</ol>
+<h2 id="question-4">QUESTION 4</h2>
+<p>Par défaut, Firefox affiche les pages en “Occidental”, donc un codage latin ou iso.</p>
+<p>La page qui s’affiche mal est donc dans un codage non-occidental, soit Unicode.</p>
+<p>On peut le vérifier en passant le codage par défaut à Unicode : le fichier UTF-8 s’affiche maintenant bien et le fichier “occidental” s’affiche mal. Donc, le <em>fichier utf-8 est <code>petit_fichier.codage1</code></em>. Remarque, on sait que la lettre É est codée sur un octet supplémentaire en UTF-8, il s’agit donc du fichier ayant le plus d’octets entre les deux.</p>
+<dl>
+<dt>UTF-8</dt>
+<dd><code>11000011 10001001</code>
+</dd>
+<dt>ISO-8859-1</dt>
+<dd><code>11001001</code>
+</dd>
+</dl>
+<h2 id="question-5">QUESTION 5</h2>
+<ol type="1">
+<li>Les “propriétés” de l’image (en début de fichier, les 3 premières lignes) s’affichent correctement mais les données de l’image sont inintelligibles (peut-être du binaire ?).</li>
+<li>C’est moche et ça fait bugger mon prompt D: (comme si ça changeait de police de caractère).</li>
+<li>J’obtiens une belle image de lac :D</li>
+</ol>
+<h2 id="question-6">QUESTION 6</h2>
+<p>L’image est laide, on a l’impression que des diagonales sont formées par les branches sombres à droite de l’image originale. Après avoir relancé <code>head -c100</code> sur les deux images, on peut voir que la deuxième ligne, correspondant à la résolution, a changé de <code>500 353</code> à <code>502 353</code>. Les pixels se décalent tous, à chaque fin de ligne on prend les deux pixels de la ligne suivante, et ainsi de suite.</p>
+<h2 id="question-7">QUESTION 7</h2>
+<p>Les formes sont conservées (on distingue toujours l’eau, les nuages et les nénuphars) mais les couleurs sont toutes altérées, psychédéliques (sauf les couleurs dans le coin inférieur droit).</p>
+<h2 id="question-8">QUESTION 8</h2>
+<p>Toujours en observant le fichier avec <code>head -c100</code>, on remarque que la première ligne est altérée. Dans des images <em>bitmap</em>, la première ligne correspond au “nombre magique” de l’image, qui définit comment sont encodées les données. En passant de <code>P6</code> à <code>P5</code>, on change la façon dont est lue l’image. <code>P5</code> nous donne une curieuse image en niveau de gris.</p>
+<h3 id="approfondissement">Approfondissement</h3>
+<p>J’ai cherché à quoi correspondaient ces nombres magiques. Il s’avère que les images “Netpbm” ont trois échelles de couleurs, encodées soit en ASCII soit en binaire. Voici un tableau récapitulatif des nombres magiques :</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Nombres magiques</th>
+<th style="text-align: center;">ASCII</th>
+<th style="text-align: center;">Binaire</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Noir et blanc</td>
+<td style="text-align: center;">P1</td>
+<td style="text-align: center;">P4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Nuances grises</td>
+<td style="text-align: center;">P2</td>
+<td style="text-align: center;">P5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Couleurs</td>
+<td style="text-align: center;">P3</td>
+<td style="text-align: center;">P6</td>
+</tr>
+</tbody>
+</table>
+<h2 id="question-9">QUESTION 9</h2>
+<p>L’octet altéré passe le nombre magique à <code>P8</code>, qui n’existe pas comme vu dans le tableau précédent. Rien ne peut donc le lire.</p>
+<h2 id="question-10">QUESTION 10</h2>
+<p>En ouvrant avec GIMP, on voit qu’il y a quatre pixels rouges sur la première ligne de l’image. En comparant avec ce que nous avons modifié, on voit que les quatre pixels rouges correspondent à <code>ff 00 00</code>. Je conclus que les pixels sont codés en RVB (avec <code>rouge = 255 0 0 = ff 00 00</code>).</p>
+<h2 id="question-11">QUESTION 11</h2>
+<p>Ce qui a été changé à partir de la question 6 :</p>
+<ol start="6" type="1">
+<li>On change la résolution</li>
+<li>On modifie la valeur maximale d’une composante de couleur. On passe de 255 à 55. Les couleurs dans le coin inférieur droit sont conservées car elles sont sombres, sans doute en dessous de 55.</li>
+<li>On change le nombre magique, passant de Pixmap (P6) à Greymap (P5), tous les deux codés en binaire.</li>
+<li>On change le nombre magique, passant à un format inexistant (P8).</li>
+<li>On modifie des pixels directement comme expliqué à la <em>question 10</em>.</li>
+</ol>
+<h2 id="question-12">QUESTION 12</h2>
+<pre><code>lac.image : Netpbm image data, size = 500 x 353, rawbits, pixmap
+lac2.image: Netpbm image data, size = 502 x 353, rawbits, pixmap  (Q6)
+lac3.image: Netpbm image data, size = 500 x 353, rawbits, pixmap  (Q7)
+lac4.image: Netpbm image data, size = 500 x 353, rawbits, greymap (Q8)
+lac5.image: data                                                  (Q9)
+lac6.image: Netpbm image data, size = 500 x 353, rawbits, pixmap  (Q10)</code></pre>
+<h2 id="question-13">QUESTION 13</h2>
+<ol type="1">
+<li>Mon nom d’utilisateur est <code>simon</code>.</li>
+<li>Mon groupe est <code>simon</code>.</li>
+</ol>
+<h2 id="question-14">QUESTION 14</h2>
+<ol start="2" type="1">
+<li><code>-rw-r--r-- 1 simon simon     8 14 avril 00:29  test.txt</code> (Oui, je travaille mieux la nuit). Je peux modifier le fichier.</li>
+<li>Après avoir enlevé les droits d’écritures pour <code>user</code> :
+<ul>
+<li>Visualiser ? OK</li>
+<li>Modifier ? FAIL</li>
+<li>Supprimer ? OK, après confirmation</li>
+</ul></li>
+<li>Après avoir enlevé les droits de lecture pour <code>user</code> :
+<ul>
+<li>Visualiser ? FAIL</li>
+<li>Modifier ? OK</li>
+<li>Supprimer ? OK</li>
+</ul></li>
+<li>Je pense que l’utilisateur pourra seulement supprimer (après confirmation). J’ai vérifié, c’est bien ça.</li>
+</ol>
+<p>NB : Quand je parle de “confirmation”, je veux dire ça :</p>
+<p><code>rm : supprimer 'test.txt' qui est protégé en écriture et est du type « fichier vide » ? o</code></p>
+<h2 id="question-15">QUESTION 15</h2>
+<p>Pour cette question, j’ai choisi de faire un petit script (pour m’amuser et pour plus de clarté).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">mkdir</span> /tmp/test</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="bu">cd</span> /tmp/test</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">mkdir</span> D-- Dr- D-w Drw</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">for</span> <span class="fu">dir</span> in *</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="kw">do</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="bu">echo</span> <span class="st">&quot;coucou&quot;</span> <span class="op">&gt;</span> <span class="va">$dir</span>/test.txt</span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="kw">done</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="fu">chmod</span> u-rw D--</span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="fu">chmod</span> u-w Dr-</span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="fu">chmod</span> u-r D-w</span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="kw">for</span> <span class="fu">dir</span> in *</span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="kw">do</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>    <span class="bu">echo</span> <span class="va">$dir</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a></span>
+<span id="cb2-18"><a href="#cb2-18"></a>    <span class="bu">printf</span> <span class="st">&quot;    Modifier un fichier dans </span><span class="va">$dir</span><span class="st"> : &quot;</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>    <span class="bu">echo</span> modif <span class="op">2&gt;</span> /dev/null <span class="op">&gt;&gt;</span> <span class="va">$dir</span>/test.txt <span class="kw">&amp;&amp;</span> <span class="bu">printf</span> <span class="st">&quot;OK\n&quot;</span> <span class="kw">||</span> <span class="bu">printf</span> <span class="st">&quot;FAIL\n&quot;</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a>    <span class="bu">printf</span> <span class="st">&quot;    Chmod un fichier dans </span><span class="va">$dir</span><span class="st"> : &quot;</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>    <span class="fu">chmod</span> o+w <span class="va">$dir</span>/test.txt <span class="op">2&gt;</span> /dev/null <span class="kw">&amp;&amp;</span> <span class="bu">printf</span> <span class="st">&quot;OK\n&quot;</span> <span class="kw">||</span> <span class="bu">printf</span> <span class="st">&quot;FAIL\n&quot;</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a>    <span class="bu">printf</span> <span class="st">&quot;    Crée un fichier dans </span><span class="va">$dir</span><span class="st"> : &quot;</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>    <span class="bu">echo</span> creation <span class="op">2&gt;</span> /dev/null <span class="op">&gt;</span> <span class="va">$dir</span>/fichier <span class="kw">&amp;&amp;</span> <span class="bu">printf</span> <span class="st">&quot;OK\n&quot;</span> <span class="kw">||</span> <span class="bu">printf</span> <span class="st">&quot;FAIL\n&quot;</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a></span>
+<span id="cb2-27"><a href="#cb2-27"></a>    <span class="bu">printf</span> <span class="st">&quot;    Supprimer un fichier dans </span><span class="va">$dir</span><span class="st"> : &quot;</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>    <span class="fu">rm</span> <span class="va">$dir</span>/test.txt <span class="op">2&gt;</span> /dev/null <span class="kw">&amp;&amp;</span> <span class="bu">printf</span> <span class="st">&quot;OK\n&quot;</span> <span class="kw">||</span> <span class="bu">printf</span> <span class="st">&quot;FAIL\n&quot;</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a></span>
+<span id="cb2-30"><a href="#cb2-30"></a>    <span class="bu">echo</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a><span class="kw">done</span></span></code></pre></div>
+<p>OUTPUT :</p>
+<pre><code>D--
+    Modifier un fichier dans D-- : OK
+    Chmod un fichier dans D-- : OK
+    Crée un fichier dans D-- : FAIL
+    Supprimer un fichier dans D-- : FAIL
+
+Dr-
+    Modifier un fichier dans Dr- : OK
+    Chmod un fichier dans Dr- : OK
+    Crée un fichier dans Dr- : FAIL
+    Supprimer un fichier dans Dr- : FAIL
+
+Drw
+    Modifier un fichier dans Drw : OK
+    Chmod un fichier dans Drw : OK
+    Crée un fichier dans Drw : OK
+    Supprimer un fichier dans Drw : OK
+
+D-w
+    Modifier un fichier dans D-w : OK
+    Chmod un fichier dans D-w : OK
+    Crée un fichier dans D-w : OK
+    Supprimer un fichier dans D-w : OK</code></pre>
+<p>Les résultats de <code>D--</code> et <code>Dr-</code> me surprennent : je ne pensais pas que l’on pouvait modifier un fichier et ses permissions si le repertoire conteneur n’avait pas les droits d’écriture.</p>
+<h2 id="question-16">QUESTION 16</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Vide</th>
+<th style="text-align: center;">Spock</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Réel</td>
+<td style="text-align: center;">0o</td>
+<td style="text-align: center;">6o</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Sur le dique</td>
+<td style="text-align: center;">0Kio</td>
+<td style="text-align: center;">4Kio</td>
+</tr>
+</tbody>
+</table>
+<h2 id="question-17">QUESTION 17</h2>
+<ul>
+<li>Taille réelle : 100o</li>
+<li>Taille disque : 4Kio</li>
+<li>Contenu : START [octets 0] END</li>
+</ul>
+<h2 id="question-18">QUESTION 18</h2>
+<ol type="1">
+<li>Sa taille réelle est de 29 Kio.</li>
+<li>Sa taille disque est de 8 Kio.</li>
+<li>La taille sur le disque est supposée être égale ou supérieure à la taille réelle. Puisque ce n’est pas le cas, on peut supposer que les octets égaux à 0 (<code>0x00</code>) ne sont pas pris en compte.</li>
+</ol>
+<h2 id="question-19">QUESTION 19</h2>
+<ol type="1">
+<li>La taille réelle de la copie est la même.</li>
+<li>La taille disque de la copie est la même.</li>
+<li>Les résultats sont les mêmes, je trouve ça normal puisque le contenu est le même.</li>
+</ol>
+<h2 id="question-20">QUESTION 20</h2>
+<ul>
+<li>1 Mio : <code>8,0K -rw-r--r-- 1 simon simon 1,0M 14 avril 19:28 sparse_file</code></li>
+<li>10 Mio : <code>8,0K -rw-r--r-- 1 simon simon 10M 14 avril 19:29 sparse_file</code></li>
+</ul>
+<p>La majorité du contenu étant des 0 (<code>0x00</code>), ce n’est pas compté comme faisant partie du fichier car cet espace est utilisable pour d’autres fichiers.</p>
+</body>
+</html>

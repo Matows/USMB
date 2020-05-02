@@ -1,0 +1,235 @@
+Simon LÉONARD CMI-INFO
+
+# TP4 INFO202
+
+## QUESTION 1
+1. /home/simon
+2. /home/simon/files/rapport-tp4-Simon_LEONARD.txt
+
+
+## QUESTION 2
+
+1. `find -name ".py"`
+2. `find /usb/bin/ -name "*.[13579]"`
+2. `find` renvoie un fichier par ligne. Je peux donc "piper" la sortie de `find` à `wc -l` pour compter le nombre de lignes.
+
+
+## QUESTION 3
+
+2. Les fichiers ont l'air identiques.
+3. `petit_fichier1.ascii` contient un charactère de plus : `0a`, Line Feed *aka* saut de ligne.
+On peut aussi le voir avec la commande `diff petit_fichier1.ascii petit_fichier2.ascii`
+
+
+## QUESTION 4
+
+Par défaut, Firefox affiche les pages en "Occidental", donc un codage latin ou iso.
+
+La page qui s'affiche mal est donc dans un codage non-occidental, soit Unicode.
+
+On peut le vérifier en passant le codage par défaut à Unicode : le fichier UTF-8 s'affiche maintenant bien et le fichier "occidental" s'affiche mal.
+Donc, le *fichier utf-8 est `petit_fichier.codage1`*.
+Remarque, on sait que la lettre É est codée sur un octet supplémentaire en UTF-8, il s'agit donc du fichier ayant le plus d'octets entre les deux.
+
+
+UTF-8
+: `11000011 10001001`
+
+ISO-8859-1
+: `11001001`
+
+
+## QUESTION 5
+
+1. Les "propriétés" de l'image (en début de fichier, les 3 premières lignes) s'affichent correctement mais les données de l'image sont inintelligibles (peut-être du binaire ?).
+2. C'est moche et ça fait bugger mon prompt D: (comme si ça changeait de police de caractère).
+3. J'obtiens une belle image de lac :D
+
+
+## QUESTION 6
+
+L'image est laide, on a l'impression que des diagonales sont formées par les branches sombres à droite de l'image originale.
+Après avoir relancé `head -c100` sur les deux images, on peut voir que la deuxième ligne, correspondant à la résolution, a changé de `500 353` à `502 353`.
+Les pixels se décalent tous, à chaque fin de ligne on prend les deux pixels de la ligne suivante, et ainsi de suite.
+
+
+## QUESTION 7
+
+Les formes sont conservées (on distingue toujours l'eau, les nuages et les nénuphars) mais les couleurs sont toutes altérées, psychédéliques (sauf les couleurs dans le coin inférieur droit).
+
+
+## QUESTION 8
+
+Toujours en observant le fichier avec `head -c100`, on remarque que la première ligne est altérée. Dans des images *bitmap*, la première ligne correspond au "nombre magique" de l'image, qui définit comment sont encodées les données. En passant de `P6` à `P5`, on change la façon dont est lue l'image. `P5` nous donne une curieuse image en niveau de gris.
+
+### Approfondissement
+
+J'ai cherché à quoi correspondaient ces nombres magiques. Il s'avère que les images "Netpbm" ont trois échelles de couleurs, encodées soit en ASCII soit en binaire. Voici un tableau récapitulatif des nombres magiques : 
+
+| Nombres magiques | ASCII | Binaire |
+|:----------------:|:-----:|:-------:|
+|   Noir et blanc  |   P1  |    P4   |
+|  Nuances grises  |   P2  |    P5   |
+|     Couleurs     |   P3  |    P6   |
+
+
+## QUESTION 9
+
+L'octet altéré passe le nombre magique à `P8`, qui n'existe pas comme vu dans le tableau précédent. Rien ne peut donc le lire.
+
+
+## QUESTION 10
+
+En ouvrant avec GIMP, on voit qu'il y a quatre pixels rouges sur la première ligne de l'image.
+En comparant avec ce que nous avons modifié, on voit que les quatre pixels rouges correspondent à `ff 00 00`. Je conclus que les pixels sont codés en RVB (avec `rouge = 255 0 0 = ff 00 00`).
+
+## QUESTION 11
+
+Ce qui a été changé à partir de la question 6 :
+
+6. On change la résolution
+7. On modifie la valeur maximale d'une composante de couleur. On passe de 255 à 55.
+Les couleurs dans le coin inférieur droit sont conservées car elles sont sombres, sans doute en dessous de 55.
+8. On change le nombre magique, passant de Pixmap (P6) à Greymap (P5), tous les deux codés en binaire.
+9. On change le nombre magique, passant à un format inexistant (P8).
+10. On modifie des pixels directement comme expliqué à la *question 10*.
+
+
+## QUESTION 12
+
+    lac.image : Netpbm image data, size = 500 x 353, rawbits, pixmap
+    lac2.image: Netpbm image data, size = 502 x 353, rawbits, pixmap  (Q6)
+    lac3.image: Netpbm image data, size = 500 x 353, rawbits, pixmap  (Q7)
+    lac4.image: Netpbm image data, size = 500 x 353, rawbits, greymap (Q8)
+    lac5.image: data                                                  (Q9)
+    lac6.image: Netpbm image data, size = 500 x 353, rawbits, pixmap  (Q10)
+
+
+## QUESTION 13
+
+1. Mon nom d'utilisateur est `simon`.
+2. Mon groupe est `simon`.
+
+
+## QUESTION 14
+
+2. `-rw-r--r-- 1 simon simon     8 14 avril 00:29  test.txt` (Oui, je travaille mieux la nuit).
+Je peux modifier le fichier.
+3. Après avoir enlevé les droits d'écritures pour `user` :
+    - Visualiser ? OK
+    - Modifier ?   FAIL
+    - Supprimer ?  OK, après confirmation
+4. Après avoir enlevé les droits de lecture pour `user` :
+    - Visualiser ? FAIL
+    - Modifier ?   OK
+    - Supprimer ?  OK
+5. Je pense que l'utilisateur pourra seulement supprimer (après confirmation). J'ai vérifié, c'est bien ça.
+
+NB : Quand je parle de "confirmation", je veux dire ça :
+
+`rm : supprimer 'test.txt' qui est protégé en écriture et est du type « fichier vide » ? o`
+
+
+## QUESTION 15
+
+Pour cette question, j'ai choisi de faire un petit script (pour m'amuser et pour plus de clarté).
+
+```bash
+mkdir /tmp/test
+cd /tmp/test
+
+mkdir D-- Dr- D-w Drw
+for dir in *
+do
+    echo "coucou" > $dir/test.txt
+done
+
+chmod u-rw D--
+chmod u-w Dr-
+chmod u-r D-w
+
+for dir in *
+do
+    echo $dir
+
+    printf "    Modifier un fichier dans $dir : "
+    echo modif 2> /dev/null >> $dir/test.txt && printf "OK\n" || printf "FAIL\n"
+
+    printf "    Chmod un fichier dans $dir : "
+    chmod o+w $dir/test.txt 2> /dev/null && printf "OK\n" || printf "FAIL\n"
+
+    printf "    Crée un fichier dans $dir : "
+    echo creation 2> /dev/null > $dir/fichier && printf "OK\n" || printf "FAIL\n"
+
+    printf "    Supprimer un fichier dans $dir : "
+    rm $dir/test.txt 2> /dev/null && printf "OK\n" || printf "FAIL\n"
+
+    echo
+done
+```
+
+OUTPUT : 
+
+```
+D--
+    Modifier un fichier dans D-- : OK
+    Chmod un fichier dans D-- : OK
+    Crée un fichier dans D-- : FAIL
+    Supprimer un fichier dans D-- : FAIL
+
+Dr-
+    Modifier un fichier dans Dr- : OK
+    Chmod un fichier dans Dr- : OK
+    Crée un fichier dans Dr- : FAIL
+    Supprimer un fichier dans Dr- : FAIL
+
+Drw
+    Modifier un fichier dans Drw : OK
+    Chmod un fichier dans Drw : OK
+    Crée un fichier dans Drw : OK
+    Supprimer un fichier dans Drw : OK
+
+D-w
+    Modifier un fichier dans D-w : OK
+    Chmod un fichier dans D-w : OK
+    Crée un fichier dans D-w : OK
+    Supprimer un fichier dans D-w : OK
+```
+
+Les résultats de `D--` et `Dr-` me surprennent : je ne pensais pas que l'on pouvait modifier un fichier et ses permissions si le repertoire conteneur n'avait pas les droits d'écriture.
+
+
+## QUESTION 16
+
+|              | Vide | Spock |
+|:------------:|:----:|:-----:|
+|     Réel     |  0o  |   6o  |
+| Sur le dique | 0Kio |  4Kio |
+
+
+## QUESTION 17
+
+- Taille réelle : 100o
+- Taille disque : 4Kio
+- Contenu : START [octets 0] END
+
+
+## QUESTION 18
+
+1. Sa taille réelle est de 29 Kio.
+2. Sa taille disque est de 8 Kio.
+3. La taille sur le disque est supposée être égale ou supérieure à la taille réelle. Puisque ce n'est pas le cas, on peut supposer que les octets égaux à 0 (`0x00`) ne sont pas pris en compte.
+
+## QUESTION 19
+
+1. La taille réelle de la copie est la même.
+2. La taille disque de la copie est la même.
+3. Les résultats sont les mêmes, je trouve ça normal puisque le contenu est le même.
+
+
+## QUESTION 20
+
+- 1 Mio : `8,0K -rw-r--r-- 1 simon simon 1,0M 14 avril 19:28 sparse_file`
+- 10 Mio : `8,0K -rw-r--r-- 1 simon simon 10M 14 avril 19:29 sparse_file`
+
+La majorité du contenu étant des 0 (`0x00`), ce n'est pas compté comme faisant partie du fichier car cet espace est utilisable pour d'autres fichiers.
