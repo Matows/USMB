@@ -1,0 +1,133 @@
+Simon LÉONARD CMI-INFO
+
+# TP5 INFO202
+
+
+## QUESTION 1
+
+Validé !
+
+## QUESTION 2
+
+L'adresse `www.linuxfr.org` est `213.36.253.176`. C'est un *alias* de `prod.linuxfr.org`.
+
+
+## QUESTION 3
+
+Les deux premiers octets de `www.google.fr` (`172.217.21.3`) et de `www.google.co.nz` (`172.217.18.227`) sont les mêmes. Leurs adresses IPv6 ont aussi une grosse partie en commun (`2a00:1450:4006:`).
+
+Bien que `google.fr` et `www.google.fr` attérissent sur la même page, leur adresse IP est différente.
+
+
+## QUESTION 4
+
+Les délais de réponse sont tous équivalent. Si le TP avait été fait à l'université, je pense que le temps de réponse aurait été plus court pour `www.univ-smb.fr` et `www.polytech.univ-smb.fr` : je pense que les serveurs sont sur le campus de Technolac, ou a proximité. 
+
+J'ai essayé de trouver la localisation des serveurs en ligne à partir de l'adresse IP, et l'IP de `www.polytech.univ-smb.fr` semble être à proximité de Chambéry.
+
+
+## QUESTION 5
+
+    - `www.univ-smb.fr` : 12 routeurs intermédiaires, 14 au total
+    - `www.polytech.univ-smb.fr` : 11 routeurs intermédiaires, 13 au total
+
+
+## QUESTION 8
+
+1. Pour *recharger* la page, 8 requêtes *GET* sont nécéssaires.
+Une requête par fichier : `tp5.html`, `normalize.css`, `tp.css`, `tp-local.css` et diverses image s'affichant sur la page.
+2. Les réponses sont soit `200 OK` accompagner du fichier, soit `304 Not Modified` si la page en cache est la même que sur le serveur.
+
+
+## QUESTION 9
+
+1. J'ai eu cette fois-ci 9 requêtes. Il semblerait que la requête supplémentaire soit `/favicon.ico`.
+2. Toutes les réponses sont `200 OK` avec le contenu de la ressource demandée, sauf pour le *favicon*.
+3. Oui et heureusement, sinon la page ne s'afficherai pas.
+
+
+## QUESTION 10
+
+1. Elle est de 120023 octets.
+2. Le nombre de paquet TCP utilisé est de 69 dans mon cas. Les paquets TCP pèsent soit 1448 octets soit 2896 octets.
+3.  - TCP : destination => `33888` | source => `80`
+    - IP : destination => `192.168.1.24` | source => `193.48.121.226`
+
+
+## QUESTION 11
+
+1. Oui, la couleur envoyé est bien bleu : `Form item: "color" = "bleu"`
+2. 
+```
+local                 remote            taille frame    description
+192.168.1.24 -------> 192.48.121.226    593 octets      GET  form_color.php
+192.168.1.24 <------- 192.48.121.226    556 octets      OK   form_color.php
+192.168.1.24 -------> 192.48.121.226    513 octets      GET  config.css
+192.168.1.24 <------- 192.48.121.226    612 octets      OK   config.css
+192.168.1.24 -------> 192.48.121.226    731 octets      POST form_color.php
+192.168.1.24 <------- 192.48.121.226    577 octets      OK   form_color.php
+```
+
+
+## QUESTION 12
+
+```
+local                 remote            taille frame    description
+192.168.1.24 -------> 192.48.121.226    593 octets      GET  form_login.php
+192.168.1.24 <------- 192.48.121.226    887 octets      OK   form_login.php
+192.168.1.24 -------> 192.48.121.226    809 octets      POST form_login.php
+192.168.1.24 <------- 192.48.121.226    762 octets      OK   form_login.php
+```
+
+Le CSS n'as pas été demandé, sans doute parcequ'il s'agit du même fichier que précédemment.
+
+
+## QUESTION 13
+
+Le mot de passe est envoyé en clair. Pour le voir dans wireshark : Hypertext Transfer Protocol > Authorization > Cretentials > `baleine:poum`.
+
+N'importe qui arrivant à s'interposé entre le client et le serveur peut lire le login et le mot de passe. Cela s'appelle une attaque *man in the middle*.
+
+## QUESTION 15
+
+Puisque j'accède à la page, le mot de passe à dû être transmit. Mais comme la connexion est crypté, je ne peux pas le voir.
+
+
+## QUESTION 16
+
+```
+                                        taille frame    descripion
+192.168.1.24 -------> 192.48.121.226    640  octets     TLSV1.2
+192.168.1.24 <------- 192.48.121.226    191  octets     TLSV1.2
+192.168.1.24 -------> 192.48.121.226    105  octets     TLSV1.2
+192.168.1.24 -------> 192.48.121.226    571  octets     TLSV1.2
+192.168.1.24 <------- 192.48.121.226    1514 octets     TLSV1.2
+192.168.1.24 <------- 192.48.121.226    738  octets     TLSV1.2
+192.168.1.24 -------> 192.48.121.226    180  octets     TLSV1.2
+192.168.1.24 -------> 192.48.121.226    635  octets     TLSV1.2 Application
+192.168.1.24 <------- 192.48.121.226    105  octets     TLSV1.2
+192.168.1.24 <------- 192.48.121.226    977  octets     TLSV1.2 Application
+192.168.1.24 -------> 192.48.121.226    85   octets     TLSV1.2
+192.168.1.24 -------> 192.48.121.226    85   octets     TLSV1.2
+192.168.1.24 -------> 192.48.121.226    571  octets     TLSV1.2
+192.168.1.24 <------- 192.48.121.226    1514 octets     TLSV1.2
+192.168.1.24 <------- 192.48.121.226    738  octets     TLSV1.2
+192.168.1.24 -------> 192.48.121.226    180  octets     TLSV1.2
+192.168.1.24 -------> 192.48.121.226    764  octets     TLSV1.2 Application
+192.168.1.24 <------- 192.48.121.226    105  octets     TLSV1.2
+192.168.1.24 <------- 192.48.121.226    912  octets     TLSV1.2 Application
+192.168.1.24 -------> 192.48.121.226    85   octets     TLSV1.2
+```
+
+
+## QUESTION 17
+
+Ne voulant pas utilisé de fichier intermédiaire, j'ai cherché comment fait sans. Voici : `printf "GET /index.html HTTP/1.1\r\nHost: www.perdu.com\r\n\r\n" | nc www.perdu.com 80`
+
+Le code de réponse est `200 OK`
+
+## QUESTION 18
+
+`printf "GET /index.php HTTP/1.1\r\nHost: www.perdu.com\r\n\r\n" | nc www.perdu.com 80`
+
+Le code de réponse est `404 Not Found`
